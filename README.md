@@ -12,6 +12,8 @@ Tum isko directly GitHub README me paste kar sakti ho 👇
 
 It acts like a **virtual career mentor** that understands the user and guides them step-by-step toward their dream career.
 
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/1ac29984-ba92-4b40-aa7e-537a6e5e094e" />
+
 ---
 
 # 🎯 **Problem Statement**
