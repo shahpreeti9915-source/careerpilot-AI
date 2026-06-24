@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CareerPilot AI - A multi-agent career and learning assistant for students. Build customized study plans, roadmaps, and find free resources securely.">
+  <title>CareerPilot AI - Multi-Agent Career & Learning Assistant</title>
+  
+  <!-- Modern Outfit Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-ByF-NIaJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D0AMtTRx.css">
+</head>
+<body>
+
+  <!-- Background Glowing Orbs for Aesthetic Premium Look -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="header-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <h1>CareerPilot <span class="badge-ai">AI</span></h1>
+      </div>
+      <div class="header-status">
+        <span class="security-status-indicator">
+          <span class="status-dot green"></span>
+          Privacy Secure Mode (No Data Storage)
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Workspace Area -->
+    <main class="app-main">
+      
+      <!-- ONBOARDING SECTION -->
+      <section id="onboarding-section" class="card glassmorphic onboarding-card fade-in">
+        <div class="onboarding-header">
+          <h2>Find Your Path, Safely</h2>
+          <p>Tell our AI Agents about your background, career objectives, and weekly study schedule. We analyze skill gaps and construct your custom learning roadmap. <strong>Zero personal data is stored on our servers.</strong></p>
+        </div>
+
+        <form id="onboarding-form" novalidate>
+          <div class="form-grid">
+            
+            <div class="form-group">
+              <label for="education-input">Educational Level / Current Program</label>
+              <input type="text" id="education-input" name="education" placeholder="e.g., Sophomore CS Student, High Schooler" required autocomplete="off">
+              <span class="error-text" id="error-education"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="goal-input">Target Career Goal</label>
+              <input type="text" id="goal-input" name="goal" placeholder="e.g., Frontend Developer, Data Scientist" list="career-suggestions" required autocomplete="off">
+              <datalist id="career-suggestions">
+                <option value="Frontend Developer">
+                <option value="Backend Developer">
+                <option value="Data Scientist">
+                <option value="Cyber Security Analyst">
+              </datalist>
+              <span class="error-text" id="error-goal"></span>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="skills-input">Current Skills (comma-separated)</label>
+              <input type="text" id="skills-input" name="skills" placeholder="e.g., HTML, CSS, Basic Python" required autocomplete="off">
+              <span class="error-text" id="error-skills"></span>
+              <p class="input-tip">Tip: Separate with commas. Do NOT enter private email, passwords, or telephone numbers here.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="hours-input">Available Study Time (hours/week)</label>
+              <input type="number" id="hours-input" name="studyHours" min="1" max="168" value="15" required autocomplete="off">
+              <span class="error-text" id="error-studyHours"></span>
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btn-submit-onboarding" class="btn-primary">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Launch Career Agents
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RESULTS DASHBOARD SECTION (Initially Hidden) -->
+      <section id="dashboard-section" class="dashboard-grid hide">
+        
+        <!-- DASHBOARD NAVIGATION TABS -->
+        <nav class="dashboard-tabs">
+          <button class="tab-btn active" id="tab-overview" data-target="panel-overview">
+            <span class="tab-dot dot-agent"></span>
+            Overview & Agent Logs
+          </button>
+          <button class="tab-btn" id="tab-roadmap" data-target="panel-roadmap">
+            <span class="tab-dot dot-roadmap"></span>
+            Skill Gap & Roadmap
+          </button>
+          <button class="tab-btn" id="tab-schedule" data-target="panel-schedule">
+            <span class="tab-dot dot-schedule"></span>
+            Weekly Study Plan
+          </button>
+          <button class="tab-btn" id="tab-resources" data-target="panel-resources">
+            <span class="tab-dot dot-resources"></span>
+            Resources & Projects
+          </button>
+          
+          <button id="btn-reset" class="btn-secondary btn-reset-style">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 4v6h-6M1 20v-6h6"></path>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            Reset Profile
+          </button>
+        </nav>
+
+        <!-- DASHBOARD CONTENT PANELS -->
+        <div class="dashboard-content card glassmorphic">
+
+          <!-- PANEL 1: OVERVIEW & AGENTS -->
+          <div id="panel-overview" class="tab-panel active">
+            <div class="panel-header">
+              <h2>Agent Orchestration Terminal</h2>
+              <p>Observe how the multi-agent system collaborates in real-time to build your personalized plan.</p>
+            </div>
+            
+            <div class="agents-intro-cards">
+              <div class="agent-card" id="agent-profile-card">
+                <div class="agent-avatar profile-avatar">PA</div>
+                <div class="agent-info">
+                  <h3>Profile Agent</h3>
+                  <p>Input Sanitization & Data Safety Guard</p>
+                </div>
+              </div>
+              <div class="agent-card" id="agent-planning-card">
+                <div class="agent-avatar planning-avatar">PL</div>
+                <div class="agent-info">
+                  <h3>Planning Agent</h3>
+                  <p>Skill Gap Analyzer & Roadmap Scheduler</p>
+                </div>
+              </div>
+              <div class="agent-card" id="agent-guidance-card">
+                <div class="agent-avatar guidance-avatar">GA</div>
+                <div class="agent-info">
+                  <h3>Guidance Agent</h3>
+                  <p>Resource Curator & Project Architect</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="terminal-container">
+              <div class="terminal-header">
+                <div class="terminal-buttons">
+                  <span class="t-btn close"></span>
+                  <span class="t-btn minimize"></span>
+                  <span class="t-btn maximize"></span>
+                </div>
+                <div class="terminal-title">agent_collaborator.log</div>
+              </div>
+              <div id="agent-terminal" class="terminal-body">
+                <!-- Live Agent logs injected here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 2: SKILL GAP & ROADMAP -->
+          <div id="panel-roadmap" class="tab-panel">
+            <div class="panel-header">
+              <h2>Career Roadmap</h2>
+              <p>Target Goal: <span id="summary-target-goal" class="highlight-cyan">-</span></p>
+            </div>
+
+            <div class="gap-analysis-banner">
+              <div class="gap-stat-box">
+                <h3 id="matching-skills-count">0</h3>
+                <p>Matching Skills</p>
+              </div>
+              <div class="gap-stat-box">
+                <h3 id="gap-skills-count">0</h3>
+                <p>Skills to Learn</p>
+              </div>
+              <div class="gap-list-box">
+                <h4>Required Competencies to Focus On:</h4>
+                <div id="gap-skills-tags" class="tags-container">
+                  <!-- Skill tags dynamic -->
+                </div>
+              </div>
+            </div>
+
+            <div id="roadmap-timeline" class="roadmap-timeline">
+              <!-- Phases dynamically injected here -->
+            </div>
+          </div>
+
+          <!-- PANEL 3: WEEKLY STUDY PLAN -->
+          <div id="panel-schedule" class="tab-panel">
+            <div class="panel-header">
+              <h2>Weekly Study Schedule</h2>
+              <p>Weekly Target: <span id="summary-study-hours" class="highlight-purple">0 hours</span> (<span id="daily-avg-hours">0</span> hrs/day over 5 active days)</p>
+            </div>
+
+            <div class="calendar-grid" id="calendar-grid">
+              <!-- Calendar slots dynamically generated -->
+            </div>
+          </div>
+
+          <!-- PANEL 4: RESOURCES & PROJECTS -->
+          <div id="panel-resources" class="tab-panel">
+            <div class="panel-header">
+              <h2>Resources & Practical Projects</h2>
+              <p>Self-paced learning materials and portfolio-ready project assignments recommended by the Guidance Agent.</p>
+            </div>
+
+            <div class="learning-split-container">
+              
+              <!-- Resources List -->
+              <div class="resources-section">
+                <h3>Curated Free Resources</h3>
+                <div class="resources-list" id="resources-list">
+                  <!-- Injected resources -->
+                </div>
+              </div>
+
+              <!-- Projects Section -->
+              <div class="projects-section">
+                <h3>Project Blueprints</h3>
+                <div class="projects-accordion" id="projects-list">
+                  <!-- Injected projects -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SECURITY AND PRIVACY HUD SIDEBAR -->
+        <aside class="security-panel card glassmorphic">
+          <div class="security-header">
+            <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <h2>Security & Privacy Audit</h2>
+          </div>
+
+          <!-- Security Badges Status -->
+          <div class="security-badges-container">
+            <div class="security-badge-item">
+              <span class="badge-status-dot green"></span>
+              <div>
+                <h4>Zero-Server Storage</h4>
+                <p>Data held in local sessionStorage only.</p>
+              </div>
+            </div>
+            <div class="security-badge-item">
+              <span class="badge-status-dot green" id="badge-xss"></span>
+              <div>
+                <h4>XSS Injection Guard</h4>
+                <p>Escapes characters before DOM rendering.</p>
+              </div>
+            </div>
+            <div class="security-badge-item">
+              <span class="badge-status-dot green" id="badge-pii"></span>
+              <div>
+                <h4>PII Redaction Engine</h4>
+                <p>Detects & redacts email/phone patterns.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time Audit Logger -->
+          <div class="audit-log-container">
+            <h3>Live Security Logs</h3>
+            <div class="audit-terminal" id="security-audit-terminal">
+              <!-- Logs dynamically generated -->
+            </div>
+          </div>
+        </aside>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; 2026 CareerPilot AI Project. Powered by secure client-side AI Agent Orchestration.</p>
+    </footer>
+
+  </div>
+
+  <!-- App Core Scripts -->
+</body>
+</html>
