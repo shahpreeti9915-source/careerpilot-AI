@@ -1,9 +1,3 @@
-Perfect 😄 ab main tumhara README **FULL professional, bold style + structured + capstone-level** bana deti hoon — jaisa judges ko impress kare.
-
-Tum isko directly GitHub README me paste kar sakti ho 👇
-
----
-
 # 🚀 **CareerPilot AI**
 
 ## 🌟 **Overview**
